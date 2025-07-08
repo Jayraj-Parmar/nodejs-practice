@@ -1,0 +1,22 @@
+{
+  "name": "restfull-api",
+  "version": "1.0.0",
+  "description": "Practice of restfull api with express,status code and postman",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "type": "module"
+  },
+  "keywords": [
+    "restfull-api",
+    "express",
+    "status-code",
+    "postman"
+  ],
+  "author": "Jayraj Parmar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}
