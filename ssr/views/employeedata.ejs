@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Employee Data</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <% if (allEmployeeData.length===0) { %>
+    <p>No Employee data found !</p>
+    <% }else{ %>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Gender</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% allEmployeeData.forEach(emp => { %>
+        <tr>
+          <td><%= emp._id %></td>
+          <td><%= emp.name %></td>
+          <td><%= emp.email %></td>
+          <td><%= emp.department %></td>
+          <td><%= emp.gender %></td>
+          <td><%= emp.createdAt.toUTCString() %></td>
+          <td><%= emp.updatedAt.toUTCString() %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% } %>
+  </body>
+</html>
