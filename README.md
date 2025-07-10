@@ -22,3 +22,5 @@ A practice project demonstrating RESTful APIs with:
 The concept is the same as `restfull_api_01`, but the key difference is:
 
 - Data is retrieved from and stored in a **MongoDB** database
+- The file structure follows the MVC (Model-View-Controller) architecture.
+- Employee & User CRUD operations.
