@@ -1,0 +1,29 @@
+{
+  "name": "restfull_api_02",
+  "version": "1.0.0",
+  "description": "The concept is the same as `restfull_api_01`, but the key difference is Data is retrieved from and stored in a **MongoDB** database. The file structure follows the MVC (Model-View-Controller) architecture.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jayraj-Parmar/nodejs-practice.git"
+  },
+  "keywords": [
+    "RESTful-APIs",
+    "Express.js",
+    "Status-Code",
+    "Postman",
+    "MongoDB",
+    "MVC(Model-View-Controller)"
+  ],
+  "author": "Jayraj Parmar",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.1.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.2",
+    "nodemon": "^3.1.10"
+  }
+}
