@@ -1,0 +1,26 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "Server Side Rendering and Authentication",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jayraj-Parmar/nodejs-practice.git"
+  },
+  "keywords": [
+    "ssr",
+    "authentication"
+  ],
+  "author": "Jayraj Parmar",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.16.2",
+    "nodemon": "^3.1.10"
+  }
+}
