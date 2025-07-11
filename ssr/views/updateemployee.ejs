@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Employee Data</title>
+  </head>
+  <body>
+    <% if (allEmployeeData.length===0) { %>
+    <p>No Employee data found !</p>
+    <% }else{ %>
+    <label for="emp">Select Employee: </label>
+    <select name="_id" id="emp">
+      <option value="">Select Employee</option>
+      <% allEmployeeData.forEach(emp => { %>
+      <option value="<%= emp._id %>"><%= emp.name %></option>
+      <% }) %>
+    </select>
+    <form action="/updateemployee?_method=PATCH" method="POST">
+      <input type="hidden" id="_id" name="_id" required />
+      <br />
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required />
+      <br />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+      <br />
+      <label for="gender">Gender</label>
+      <input type="radio" name="gender" id="Male" value="Male" />
+      <label for="Male">Male</label>
+      <input type="radio" name="gender" id="Female" value="Female" />
+      <label for="Female">Female</label>
+      <br />
+      <label for="department">Department</label>
+      <select name="department" id="department">
+        <option value="Web Development">Web Development</option>
+        <option value="Frontend Devlopement">Frontend Devlopement</option>
+        <option value="Backend Devlopment">Backend Devlopment</option>
+        <option value="Full Stack Devlopment">Full Stack Devlopment</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      document
+        .getElementById("emp")
+        .addEventListener("change", async function () {
+          const empId = this.value;
+          if (!empId) {
+            document.getElementById("_id").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("department").value = "";
+            document.getElementById("Male").checked = false;
+            document.getElementById("Female").checked = false;
+            alert("Please Select Employee");
+            return;
+          }
+
+          fetch(`/employee/${empId}`)
+            .then((data) => data.json())
+            .then((data) => {
+              document.getElementById("_id").value = data._id;
+              document.getElementById("name").value = data.name;
+              document.getElementById("email").value = data.email;
+              document.getElementById("department").value = data.department;
+              if (data.gender === "Male") {
+                document.getElementById("Male").checked = true;
+              } else if (data.gender === "Female") {
+                document.getElementById("Female").checked = true;
+              }
+            })
+            .catch((error) => alert(`Error : ${error}`));
+        });
+    </script>
+    <% } %>
+  </body>
+</html>
