@@ -11,4 +11,7 @@ const handleGetAllEmployee = async (req, res) => {
     res.status(500).json({ error: "Server Error", message: error.message });
   }
 };
-export { handleGetAllEmployee };
+const handleCreateEmployee = async (req, res) => {
+  res.render("createemployee");
+};
+export { handleGetAllEmployee, handleCreateEmployee };

@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.config.js";
 import empRouter from "./routes/employeeviews.routes.js";
+import empApiRoute from "./routes/employeeapi.routes.js";
 dotenv.config();
 
 // Middlewares
@@ -21,3 +22,4 @@ connectDB()
   });
 //Routes
 app.use(empRouter);
+app.use(empApiRoute);

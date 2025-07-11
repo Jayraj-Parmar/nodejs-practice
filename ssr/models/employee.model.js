@@ -8,7 +8,7 @@ const employeeSchema = mongoose.Schema(
       type: String,
       enum: [
         "Web Development",
-        "Front-end Devlopement",
+        "Frontend Devlopement",
         "Backend Devlopment",
         "Full Stack Devlopment",
       ],
