@@ -7,7 +7,7 @@ const checkDuplicate = (fields) => {
         if (!value) continue;
         const existing = await employee.findOne({ [field]: value });
         if (existing) {
-          return res.status(400).json({
+          return res.status(409).json({
             message: `Employee's ${field} '${value}' already exists.`,
           });
         }
