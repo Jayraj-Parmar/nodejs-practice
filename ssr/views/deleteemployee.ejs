@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delete Employee</title>
+  </head>
+  <body>
+    <% if (allEmployeeData.length===0) { %>
+    <p>No Employee data found !</p>
+    <% }else{ %>
+    <form action="/deleteemployee?_method=DELETE" method="POST">
+      <label for="emp">Delete Employee: </label>
+      <select name="_id" id="emp">
+        <% allEmployeeData.forEach(emp => { %>
+        <option value="<%= emp._id %>"><%= emp.name %></option>
+        <% }) %>
+      </select>
+      <button type="submit">Delete</button>
+    </form>
+    <% } %>
+  </body>
+</html>

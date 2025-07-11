@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.config.js";
 import empRouter from "./routes/employeeviews.routes.js";
 import empApiRoute from "./routes/employeeapi.routes.js";
+import methodOverride from "method-override";
+
 dotenv.config();
 
 // Middlewares
@@ -21,5 +23,6 @@ connectDB()
     console.log(`MongoDB connect err: ${err.message}`);
   });
 //Routes
+app.use(methodOverride("_method")); 
 app.use(empRouter);
 app.use(empApiRoute);

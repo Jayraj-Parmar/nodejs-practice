@@ -8,9 +8,7 @@ const handleCreateEmployee = async (req, res) => {
       !newEmpData.gender ||
       !newEmpData.department
     ) {
-      res
-        .status(404)
-        .send({ error: "All feilds required", message: err.message });
+      return res.status(400).send({ error: "All feilds required" });
     }
     await employee.create(newEmpData);
     res.status(302).redirect("/employeedata");
@@ -18,4 +16,13 @@ const handleCreateEmployee = async (req, res) => {
     res.send({ error: "Server Error", message: error.message });
   }
 };
-export { handleCreateEmployee };
+const handleDeleteEmployee = async (req, res) => {
+  try {
+    const { _id } = req.body;
+    await employee.findByIdAndDelete(_id);
+    res.status(302).redirect("/employeedata");
+  } catch (error) {
+    res.send({ error: "Server Error", message: error.message });
+  }
+};
+export { handleCreateEmployee, handleDeleteEmployee };
