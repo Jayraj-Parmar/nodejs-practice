@@ -32,4 +32,20 @@ const handleDeleteEmployee = async (req, res) => {
     res.status(500).json({ error: "Server Error", message: error.message });
   }
 };
-export { handleGetAllEmployee, handleCreateEmployee, handleDeleteEmployee };
+const handleUpdateEmployee = async (req, res) => {
+  try {
+    const allEmployeeData = await getAllEmployee();
+    if (allEmployeeData.length === 0) {
+      return res.status(204).render("updateemployee");
+    }
+    res.status(200).render("updateemployee", { allEmployeeData });
+  } catch (error) {
+    res.status(500).json({ error: "Server Error", message: error.message });
+  }
+};
+export {
+  handleGetAllEmployee,
+  handleCreateEmployee,
+  handleDeleteEmployee,
+  handleUpdateEmployee,
+};

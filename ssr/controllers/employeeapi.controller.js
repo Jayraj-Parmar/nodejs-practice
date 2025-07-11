@@ -25,4 +25,26 @@ const handleDeleteEmployee = async (req, res) => {
     res.send({ error: "Server Error", message: error.message });
   }
 };
-export { handleCreateEmployee, handleDeleteEmployee };
+const handleGetEmployeeById = async (req, res) => {
+  try {
+    const emp = await employee.findById(req.params.id);
+    if (!emp) return res.status(404).json({ error: "Employee not found" });
+    res.json(emp);
+  } catch (error) {
+    res.status(500).json({ error: "Server error", message: error.message });
+  }
+};
+const handleUpdateEmployee = async (req, res) => {
+  try {
+    await employee.findByIdAndUpdate(req.body._id, req.body, { new: true });
+    res.status(302).redirect("/employeedata");
+  } catch (error) {
+    res.status(500).json({ error: "Server Error", message: error.message });
+  }
+};
+export {
+  handleCreateEmployee,
+  handleDeleteEmployee,
+  handleGetEmployeeById,
+  handleUpdateEmployee,
+};
