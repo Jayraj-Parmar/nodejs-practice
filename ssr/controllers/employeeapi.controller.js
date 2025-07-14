@@ -1,7 +1,7 @@
 import employee from "../models/employee.model.js";
 const handleCreateEmployee = async (req, res) => {
   try {
-    const newEmpData = req.body;
+    const newEmpData = { ...req.body, createdBy: req.user._id };
     if (
       !newEmpData.name ||
       !newEmpData.email ||
@@ -11,7 +11,7 @@ const handleCreateEmployee = async (req, res) => {
       return res.status(400).send({ error: "All feilds required" });
     }
     await employee.create(newEmpData);
-    res.status(302).redirect("/employeedata");
+    res.status(302).redirect("employeedata");
   } catch (error) {
     res.send({ error: "Server Error", message: error.message });
   }
@@ -20,7 +20,7 @@ const handleDeleteEmployee = async (req, res) => {
   try {
     const { _id } = req.body;
     await employee.findByIdAndDelete(_id);
-    res.status(302).redirect("/employeedata");
+    res.status(302).redirect("employeedata");
   } catch (error) {
     res.send({ error: "Server Error", message: error.message });
   }
@@ -37,7 +37,7 @@ const handleGetEmployeeById = async (req, res) => {
 const handleUpdateEmployee = async (req, res) => {
   try {
     await employee.findByIdAndUpdate(req.body._id, req.body, { new: true });
-    res.status(302).redirect("/employeedata");
+    res.status(302).redirect("employeedata");
   } catch (error) {
     res.status(500).json({ error: "Server Error", message: error.message });
   }

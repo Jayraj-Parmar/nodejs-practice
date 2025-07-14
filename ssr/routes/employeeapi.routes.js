@@ -6,10 +6,11 @@ import {
   handleUpdateEmployee,
 } from "../controllers/employeeapi.controller.js";
 import checkDuplicate from "../middleware/checkduplicate.middleware.js";
+import employee from "../models/employee.model.js";
 const empApiRoute = express.Router();
 empApiRoute.post(
   "/createemployee",
-  checkDuplicate(["email"]),
+  checkDuplicate(["email"], employee),
   handleCreateEmployee
 );
 empApiRoute.delete("/deleteemployee", handleDeleteEmployee);

@@ -16,7 +16,7 @@
       <option value="<%= emp._id %>"><%= emp.name %></option>
       <% }) %>
     </select>
-    <form action="/updateemployee?_method=PATCH" method="POST">
+    <form action="/employee/updateemployee?_method=PATCH" method="POST">
       <input type="hidden" id="_id" name="_id" required />
       <br />
       <label for="name">Name</label>
@@ -56,7 +56,7 @@
             return;
           }
 
-          fetch(`/employee/${empId}`)
+          fetch(`/employee/employee/${empId}`)
             .then((data) => data.json())
             .then((data) => {
               document.getElementById("_id").value = data._id;

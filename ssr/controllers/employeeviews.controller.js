@@ -1,14 +1,11 @@
 import employee from "../models/employee.model.js";
 
-const getAllEmployee = async () => {
-  return await employee.find();
+const getAllEmployee = async (user) => {
+  return await employee.find(user);
 };
 const handleGetAllEmployee = async (req, res) => {
   try {
-    const allEmployeeData = await getAllEmployee();
-    if (allEmployeeData.length === 0) {
-      return res.status(204).render("employeedata");
-    }
+    const allEmployeeData = await getAllEmployee({ createdBy: req.user._id });
     res.status(200).render("employeedata", { allEmployeeData });
   } catch (error) {
     res.status(500).json({ error: "Server Error", message: error.message });
@@ -23,7 +20,7 @@ const handleCreateEmployee = async (req, res) => {
 };
 const handleDeleteEmployee = async (req, res) => {
   try {
-    const allEmployeeData = await getAllEmployee();
+    const allEmployeeData = await getAllEmployee({ createdBy: req.user._id });
     if (allEmployeeData.length === 0) {
       return res.status(204).render("deleteemployee");
     }
@@ -34,7 +31,7 @@ const handleDeleteEmployee = async (req, res) => {
 };
 const handleUpdateEmployee = async (req, res) => {
   try {
-    const allEmployeeData = await getAllEmployee();
+    const allEmployeeData = await getAllEmployee({ createdBy: req.user._id });
     if (allEmployeeData.length === 0) {
       return res.status(204).render("updateemployee");
     }

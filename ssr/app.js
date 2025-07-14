@@ -4,7 +4,10 @@ import connectDB from "./config/db.config.js";
 import empRouter from "./routes/employeeviews.routes.js";
 import empApiRoute from "./routes/employeeapi.routes.js";
 import methodOverride from "method-override";
-
+import userViewRoute from "./routes/userview.routes.js";
+import userApiRoute from "./routes/userapi.routes.js";
+import cookieParser from "cookie-parser";
+import restrictToLoggedInUserOnly from "./middleware/auth.middleware.js";
 dotenv.config();
 
 // Middlewares
@@ -13,6 +16,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set("views", "./views");
+app.use(methodOverride("_method"));
+app.use(cookieParser());
+
+//MongoDB connection
 connectDB()
   .then(() => {
     app.listen(process.env.PORT, () => {
@@ -22,7 +29,9 @@ connectDB()
   .catch((err) => {
     console.log(`MongoDB connect err: ${err.message}`);
   });
+
 //Routes
-app.use(methodOverride("_method")); 
-app.use(empRouter);
-app.use(empApiRoute);
+app.use("/employee", restrictToLoggedInUserOnly, empRouter);
+app.use("/employee", restrictToLoggedInUserOnly, empApiRoute);
+app.use(userViewRoute);
+app.use(userApiRoute);

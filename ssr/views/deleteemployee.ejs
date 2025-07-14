@@ -9,7 +9,7 @@
     <% if (allEmployeeData.length===0) { %>
     <p>No Employee data found !</p>
     <% }else{ %>
-    <form action="/deleteemployee?_method=DELETE" method="POST">
+    <form action="/employee/deleteemployee?_method=DELETE" method="POST">
       <label for="emp">Delete Employee: </label>
       <select name="_id" id="emp">
         <% allEmployeeData.forEach(emp => { %>

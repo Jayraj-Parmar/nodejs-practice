@@ -14,6 +14,7 @@ const employeeSchema = mongoose.Schema(
       ],
       required: true,
     },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
   },
   { timestamps: true }
 );
