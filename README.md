@@ -23,4 +23,11 @@ The concept is the same as `restfull_api_01`, but the key difference is:
 
 - Data is retrieved from and stored in a **MongoDB** database
 - The file structure follows the MVC (Model-View-Controller) architecture.
-- Employee & User CRUD operations.
+- Employee operations.
+
+### SSR(Server-Side-Rendering)
+
+The concept is the same as `restfull_api_02`, but the key difference is:
+
+- Singup and Login using session id.
+- CRUD in SSR(Server-Side-Rendering).
